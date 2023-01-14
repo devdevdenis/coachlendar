@@ -1,9 +1,8 @@
 import { Injectable, Logger } from '@nestjs/common';
 import { Promise as Bluebird } from 'bluebird';
-import { Connection } from "typeorm";
-import { ProductsSeeder } from "./products.seeder";
-import { SeederInterface } from "./seeder.interface";
-import { OrdersSeeder } from "./orders.seeder";
+import { Connection } from 'typeorm';
+import { ClientsSeeder } from './clients.seeder';
+import { SeederInterface } from './seeder.interface';
 
 @Injectable()
 export class SeedService {
@@ -12,13 +11,9 @@ export class SeedService {
 
   constructor(
     private readonly connection: Connection,
-    private readonly productsSeeder: ProductsSeeder,
-    private readonly ordersSeeder: OrdersSeeder,
+    private readonly productsSeeder: ClientsSeeder,
   ) {
-    this.seeders = [
-      this.ordersSeeder,
-      this.productsSeeder,
-    ];
+    this.seeders = [this.productsSeeder];
   }
 
   async seed() {
@@ -30,4 +25,3 @@ export class SeedService {
     });
   }
 }
-

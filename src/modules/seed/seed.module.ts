@@ -1,27 +1,16 @@
-import { TypeOrmModule } from "@nestjs/typeorm";
-import { seedOrmConfig } from "../../ormConfig";
-import { Product } from "../products/entities/product.entity";
-import { SeedService } from "./seed.service";
-import { Module } from "@nestjs/common";
-import { ProductsSeeder } from "./products.seeder";
-import { Order } from "../orders/entities/order.entity";
-import { OrdersSeeder } from "./orders.seeder";
+import { TypeOrmModule } from '@nestjs/typeorm';
+import { seedOrmConfig } from '../../ormConfig';
+import { SeedService } from './seed.service';
+import { Module } from '@nestjs/common';
+import { ClientsSeeder } from './clients.seeder';
+import { Client } from '../clients/entities/client.entity';
 
 @Module({
   imports: [
     TypeOrmModule.forRoot(seedOrmConfig),
-    TypeOrmModule.forFeature([
-      Product,
-      Order,
-    ]),
+    TypeOrmModule.forFeature([Client]),
   ],
   controllers: [],
-  providers: [
-    SeedService,
-    ProductsSeeder,
-    OrdersSeeder,
-  ],
+  providers: [SeedService, ClientsSeeder],
 })
-export class SeedModule {
-
-}
+export class SeedModule {}
